@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Ejercicio3_2.ViewModel"
+             xmlns:conver="clr-namespace:Ejercicio3_2.Services"
+             x:Class="Ejercicio3_2.Views.VListStud">
+    <ContentPage.Resources>
+        <conver:imageConverter x:Key="ByteArray"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout.BindingContext>
+                <vm:VMListStud></vm:VMListStud>
+            </StackLayout.BindingContext>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="Listado"/>
+            </StackLayout>
+            <CollectionView x:Name="listStud"
+                            SelectionMode="Single"
+                            ItemsSource="{Binding StudList}"
+                            SelectionChanged="listStud_SelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="imgL"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   Source="{Binding Foto, Converter={StaticResource ByteArray}}"
+                                   WidthRequest="50"
+                                   HeightRequest="50"/>
+                            <Label x:Name="lblName"
+                                   Grid.Row="0"
+                                   Grid.Column="1"
+                                   WidthRequest="100"
+                                   Text="{Binding Nombres}"/>
+                            <Label x:Name="lblApel"
+                                   Grid.Row="0"
+                                   Grid.Column="2"
+                                   WidthRequest="100"
+                                   Text="{Binding Apellidos}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <!--<ListView x:Name="studList"
+                      HasUnevenRows="True"
+                      ItemsSource="{Binding StudList}"
+                      >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout>
+                                    <Image x:Name="img"
+                                           Source="{Binding Foto, Converter={StaticResource ByteArray}}"
+                                           WidthRequest="50"
+                                           HeightRequest="50"/>
+                                </StackLayout>
+                                <StackLayout>
+                                    <Label x:Name="lblName"
+                                           Text="hola" 
+                                           WidthRequest="80"/>
+                                    <Label x:Name="lblsName"
+                                           Text="{Binding Apellidos}" 
+                                           WidthRequest="80"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+            <StackLayout>
+                <Button x:Name="btnDel" 
+                        Text="Eliminar"
+                        Clicked="btnDel_Clicked"/>
+                <Button x:Name="btnEdit" 
+                        Text="Editar"
+                        Clicked="btnEdit_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

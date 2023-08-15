@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Ejercicio3_2.ViewModel"
+             x:Class="Ejercicio3_2.Views.VAddStud">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout.BindingContext>
+                <vm:VMAddStud/>
+            </StackLayout.BindingContext>
+            <StackLayout>
+                <Label Text="Registro de alumnos"/>
+            </StackLayout>
+            <StackLayout>
+                <Image x:Name="img" Source="{Binding FSource}" WidthRequest="100" HeightRequest="100">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                              NumberOfTapsRequired="1"
+                                              Command="{Binding takePhoto}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Entry x:Name="txtName" Placeholder="Nombres" Text="{Binding Nombres}"/>
+                <Entry x:Name="txtSname" Placeholder="Apellidos" Text="{Binding Apellidos}"/>
+                <Entry x:Name="txtSex" Placeholder="Sexo (H o M)" MaxLength="1" Text="{Binding Sexo}"/>
+                <Entry x:Name="txtDir" Placeholder="Direccion" Text="{Binding Direccion}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Text="Agregar Estudiante" Command="{Binding addStud}"/>
+                <Button Text="Ver Estudiantes" x:Name="btnStudList" Clicked="btnStudList_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

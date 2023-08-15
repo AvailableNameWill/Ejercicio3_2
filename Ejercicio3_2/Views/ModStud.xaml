@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Ejercicio3_2.ViewModel"
+             x:Class="Ejercicio3_2.Views.ModStud">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout.BindingContext>
+                <vm:VMModStud/>
+            </StackLayout.BindingContext>
+            <StackLayout Orientation="Vertical">
+                <Image x:Name="imgE"
+                       WidthRequest="100"
+                       HeightRequest="100"
+                       BackgroundColor="Black"
+                       Source="{Binding FSource}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"
+                                              NumberOfTapsRequired="1"
+                                              Command="{Binding takePhoto}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Entry Text="{Binding Id}"
+                       x:Name="lblId"
+                       IsReadOnly="True"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Nombres: " FontSize="20"/>
+                    <Entry x:Name="lblName" WidthRequest="100" FontSize="20" 
+                           Text="{Binding Nombres}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Apellidos: " FontSize="20"/>
+                    <Entry x:Name="lblSname" WidthRequest="100" FontSize="20"
+                           Text="{Binding Apellidos}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Sexo: " FontSize="20"/>
+                    <Entry x:Name="lblSex" WidthRequest="100" FontSize="20"
+                           Text="{Binding Sexo}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Direccion: " FontSize="20"/>
+                    <Entry x:Name="lblDir" WidthRequest="100" FontSize="20"
+                           Text="{Binding Direccion}"/>
+                </StackLayout>
+            </StackLayout>
+            <Button Text="Modificar"
+                    Command="{Binding modStud}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
