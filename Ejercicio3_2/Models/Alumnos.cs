@@ -14,7 +14,7 @@ namespace Ejercicio3_2.Models
         private string apellidos;
         private string sexo;
         private string direccion;
-        private string foto;
+        private byte[] foto;
         private ImageSource fSource;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -67,7 +67,7 @@ namespace Ejercicio3_2.Models
             }
         }
 
-        public string Foto { get => foto;
+        public byte[] Foto { get => foto;
             set{
                 if (foto != value){
                     foto = value;

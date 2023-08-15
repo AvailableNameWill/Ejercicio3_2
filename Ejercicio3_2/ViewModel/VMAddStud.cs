@@ -41,7 +41,7 @@ namespace Ejercicio3_2.ViewModel
                     Apellidos = string.Empty;
                     Sexo = string.Empty;
                     Direccion = string.Empty;
-                    Foto = string.Empty;
+                    Foto = null;
                     FSource = null;
                 }
                 else Debug.WriteLine("no");
@@ -52,7 +52,7 @@ namespace Ejercicio3_2.ViewModel
                 Apellidos = string.Empty;
                 Sexo = string.Empty;
                 Direccion = string.Empty;
-                Foto = string.Empty;
+                Foto = null;
                 FSource = null;
             });
 
@@ -77,7 +77,13 @@ namespace Ejercicio3_2.ViewModel
                 if (photo != null)
                 {
                     FSource = ImageSource.FromStream(() => { return photo.GetStream(); });
-                    Foto = photo.AlbumPath;
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        Stream stream = photo.GetStream();
+                        stream.CopyTo(ms);
+                        byte[] data = ms.ToArray();
+                        Foto = data;
+                    }
                 }
             }
             else await Permissions.RequestAsync<Permissions.Camera>();

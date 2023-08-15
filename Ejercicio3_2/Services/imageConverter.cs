@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Text;
 using Xamarin.Forms;
 
@@ -12,8 +13,11 @@ namespace Ejercicio3_2.Services
         {
             ImageSource image = null;
             if (value != null){
-                string img = (string)value;
-                image = ImageSource.FromFile(img);
+                byte[] byteImg = value as byte[];
+                var stream = new MemoryStream(byteImg);
+                image = ImageSource.FromStream(() => stream);
+                /*string img = (string)value;
+                image = ImageSource.FromFile(img);*/
             }
             return image;
         }

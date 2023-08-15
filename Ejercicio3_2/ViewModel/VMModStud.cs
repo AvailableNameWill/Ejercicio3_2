@@ -3,6 +3,7 @@ using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -36,7 +37,7 @@ namespace Ejercicio3_2.ViewModel
                     Apellidos = string.Empty;
                     Sexo = string.Empty;
                     Direccion = string.Empty;
-                    Foto = string.Empty;
+                    Foto = null;
                     FSource = null;
                     Debug.WriteLine(i);
                 }
@@ -65,7 +66,13 @@ namespace Ejercicio3_2.ViewModel
                 if (photo != null)
                 {
                     FSource = ImageSource.FromStream(() => { return photo.GetStream(); });
-                    Foto = photo.AlbumPath;
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        Stream stream = photo.GetStream();
+                        stream.CopyTo(ms);
+                        byte[] data = ms.ToArray();
+                        Foto = data;
+                    }
                 }
             }
             else await Permissions.RequestAsync<Permissions.Camera>();

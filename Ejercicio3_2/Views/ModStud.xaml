@@ -2,8 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Ejercicio3_2.ViewModel"
+             xmlns:conver="clr-namespace:Ejercicio3_2.Services"
              x:Class="Ejercicio3_2.Views.ModStud">
+    <ContentPage.Resources>
+        <conver:imageConverter x:Key="ByteArray"/>
+    </ContentPage.Resources>
     <ContentPage.Content>
+        
         <StackLayout>
             <StackLayout.BindingContext>
                 <vm:VMModStud/>
@@ -12,8 +17,7 @@
                 <Image x:Name="imgE"
                        WidthRequest="100"
                        HeightRequest="100"
-                       BackgroundColor="Black"
-                       Source="{Binding FSource}">
+                       Source="{Binding FSource, Converter={StaticResource ByteArray}}">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"
                                               NumberOfTapsRequired="1"

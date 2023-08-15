@@ -1,6 +1,7 @@
 ﻿using Ejercicio3_2.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,8 +30,9 @@ namespace Ejercicio3_2.Views
 
         private void fillFields()
 		{
-			imgE.Source = ImageSource.FromFile(alumno.Foto);
-			lblName.Text = alumno.Nombres;
+            var stream = new MemoryStream(alumno.Foto);
+            imgE.Source = ImageSource.FromStream(() => stream);
+            lblName.Text = alumno.Nombres;
 			lblSname.Text = alumno.Apellidos;
 			lblSex.Text = alumno.Sexo;
 			lblDir.Text = alumno.Direccion;
