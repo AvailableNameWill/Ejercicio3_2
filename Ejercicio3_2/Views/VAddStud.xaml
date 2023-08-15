@@ -3,31 +3,69 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Ejercicio3_2.ViewModel"
              x:Class="Ejercicio3_2.Views.VAddStud">
+    <ContentPage.BindingContext>
+        <vm:VMAddStud/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout.BindingContext>
-                <vm:VMAddStud/>
-            </StackLayout.BindingContext>
+        <StackLayout Spacing="10" Padding="20">
+            <Label Text="Registro de Alumnos" FontSize="24" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"/>
+
+            <Image Source="https://cdn-icons-png.flaticon.com/512/4181/4181788.png" HeightRequest="100" HorizontalOptions="CenterAndExpand"/>
+
+            <Frame Margin="1" Padding="1">
+                <StackLayout Margin="0" Padding="0">
+
+                    <Image x:Name="img" Source="{Binding FSource}" WidthRequest="100" HeightRequest="145" HorizontalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1" Command="{Binding takePhoto}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="Toque para tomar foto" FontSize="17" FontAttributes="Bold" HorizontalTextAlignment="Center" Padding="5"/>
+                </StackLayout>
+            </Frame>
+
             <StackLayout>
-                <Label Text="Registro de alumnos"/>
+                <Frame BackgroundColor="#F0F0F0" Padding="2" CornerRadius="5" Margin="2">
+                    <Entry TextColor="Blue" Placeholder="Nombres" Text="{Binding Nombres}" PlaceholderColor="#A0A0A0" />
+                </Frame>
+
+                <Frame BackgroundColor="#F0F0F0" Padding="2" CornerRadius="5" Margin="2">
+                    <Entry TextColor="Blue" Placeholder="Apellidos" Text="{Binding Apellidos}" PlaceholderColor="#A0A0A0" />
+                </Frame>
+
+                <Frame BackgroundColor="#F0F0F0" Padding="2" CornerRadius="5" Margin="2">
+                    <Entry TextColor="Blue" Placeholder="Sexo (H o M)" MaxLength="1" Text="{Binding Sexo}" PlaceholderColor="#A0A0A0" />
+                </Frame>
+
+                <Frame BackgroundColor="#F0F0F0" Padding="2" CornerRadius="5" Margin="2">
+                    <Entry TextColor="Blue" Placeholder="Dirección" Text="{Binding Direccion}" PlaceholderColor="#A0A0A0" />
+                </Frame>
             </StackLayout>
+
+
             <StackLayout>
-                <Image x:Name="img" Source="{Binding FSource}" WidthRequest="100" HeightRequest="100">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
-                                              NumberOfTapsRequired="1"
-                                              Command="{Binding takePhoto}"/>
-                    </Image.GestureRecognizers>
-                </Image>
-                <Entry x:Name="txtName" Placeholder="Nombres" Text="{Binding Nombres}"/>
-                <Entry x:Name="txtSname" Placeholder="Apellidos" Text="{Binding Apellidos}"/>
-                <Entry x:Name="txtSex" Placeholder="Sexo (H o M)" MaxLength="1" Text="{Binding Sexo}"/>
-                <Entry x:Name="txtDir" Placeholder="Direccion" Text="{Binding Direccion}"/>
+                <Button Text="Agregar Estudiante"
+            Command="{Binding addStud}"
+            BackgroundColor="#3498DB"
+            TextColor="White"
+            CornerRadius="10"
+            Margin="5"
+            HeightRequest="40"
+            FontSize="16"
+            HorizontalOptions="FillAndExpand" />
+
+                <Button Text="Ver Estudiantes"
+            Clicked="btnStudList_Clicked"
+            BackgroundColor="#27AE60"
+            TextColor="White"
+            CornerRadius="10"
+            Margin="5"
+            HeightRequest="40"
+            FontSize="16"
+            HorizontalOptions="FillAndExpand" />
             </StackLayout>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Button Text="Agregar Estudiante" Command="{Binding addStud}"/>
-                <Button Text="Ver Estudiantes" x:Name="btnStudList" Clicked="btnStudList_Clicked"/>
-            </StackLayout>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
