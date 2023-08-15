@@ -14,6 +14,7 @@
                 <vm:VMModStud/>
             </StackLayout.BindingContext>
             <StackLayout Orientation="Vertical">
+                
                 <Image x:Name="imgE"
                        WidthRequest="100"
                        HeightRequest="100"
@@ -24,32 +25,36 @@
                                               Command="{Binding takePhoto}"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Entry Text="{Binding Id}"
-                       x:Name="lblId"
-                       IsReadOnly="True"/>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Nombres: " FontSize="20"/>
-                    <Entry x:Name="lblName" WidthRequest="100" FontSize="20" 
-                           Text="{Binding Nombres}"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Apellidos: " FontSize="20"/>
-                    <Entry x:Name="lblSname" WidthRequest="100" FontSize="20"
-                           Text="{Binding Apellidos}"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Sexo: " FontSize="20"/>
-                    <Entry x:Name="lblSex" WidthRequest="100" FontSize="20"
-                           Text="{Binding Sexo}"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Direccion: " FontSize="20"/>
-                    <Entry x:Name="lblDir" WidthRequest="100" FontSize="20"
-                           Text="{Binding Direccion}"/>
-                </StackLayout>
+                
+           <StackLayout Spacing="10" Padding="20">
+            <Label Text="ID:" FontSize="18"/>
+            <Entry x:Name="lblId" Text="{Binding Id}" IsReadOnly="True" FontSize="18" BackgroundColor="#F0F0F0"/>
+
+            <Label Text="Nombres:" FontSize="18"/>
+            <Entry x:Name="lblName" FontSize="18" Text="{Binding Nombres}" BackgroundColor="#F0F0F0"/>
+
+            <Label Text="Apellidos:" FontSize="18"/>
+            <Entry x:Name="lblSname" FontSize="18" Text="{Binding Apellidos}" BackgroundColor="#F0F0F0"/>
+
+            <Label Text="Sexo:" FontSize="18"/>
+            <Entry x:Name="lblSex" FontSize="18" Text="{Binding Sexo}" BackgroundColor="#F0F0F0"/>
+
+            <Label Text="Dirección:" FontSize="18"/>
+            <Entry x:Name="lblDir" FontSize="18" Text="{Binding Direccion}" BackgroundColor="#F0F0F0"/>
+        </StackLayout>
+                
             </StackLayout>
+            
             <Button Text="Modificar"
-                    Command="{Binding modStud}"/>
+                    Command="{Binding modStud}"
+                    BackgroundColor="#2196F3"
+                    TextColor="White"
+                    FontSize="18"
+                    CornerRadius="8"
+                    HorizontalOptions="CenterAndExpand"
+                    WidthRequest="150"
+                    HeightRequest="50"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
